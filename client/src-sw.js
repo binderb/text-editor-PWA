@@ -14,9 +14,21 @@ const pageCache = new CacheFirst({
       statuses: [0, 200],
     }),
     new ExpirationPlugin({
-      maxAgeSeconds: 30 * 24 * 60 * 60, // expire after 30 days.
+      maxAgeSeconds: 30 * 24 * 60 * 60 // expire after 30 days.
     }),
   ],
+});
+
+const imageCache = new CacheFirst({
+  cacheName: 'image-cache',
+  plugins: [
+    new CacheableResponsePlugin({
+      statuses: [0, 200],
+    }),
+    new ExpirationPlugin({
+      maxAgeSeconds: 30 * 24 * 60 * 60 // expire after 30 days.
+    })
+  ]
 });
 
 warmStrategyCache({
@@ -24,7 +36,7 @@ warmStrategyCache({
   strategy: pageCache,
 });
 
-// registerRoute(({ request }) => request.mode === 'navigate', pageCache);
+registerRoute(({ request }) => request.mode === 'navigate',pageCache);
 
 // TODO: Implement asset caching
-// registerRoute();
+registerRoute(({ request }) => request.destination === 'image', imageCache);
