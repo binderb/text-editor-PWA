@@ -71,6 +71,12 @@ module.exports = () => {
               // plugins: ['@babel/plugin-transform-runtime']
             }
           }
+        },
+        // Prevent browser confusion on loading source maps
+        {
+          test: /\.(m?js|map)$/,
+          enforce: 'pre',
+          use: ['source-map-loader']
         }
       ],
     },
