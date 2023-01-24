@@ -23,18 +23,6 @@ if (typeof editor === 'undefined') {
   loadSpinner();
 }
 
-const hideButtonIfInstalled = async () => {
-  const relatedApps = await navigator.getInstalledRelatedApps();
-  console.log("related apps: ",relatedApps);
-  if (relatedApps && relatedApps.length > 0) {
-    const installButton = document.querySelector('#buttonInstall');
-    installButton.setAttribute('style','display:none;');
-  }
-}
-
-hideButtonIfInstalled();
-
-
 // Check if service workers are supported
 if ('serviceWorker' in navigator) {
   // register workbox service worker
