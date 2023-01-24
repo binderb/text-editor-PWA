@@ -46,6 +46,10 @@ module.exports = () => {
         background_color: '#225ca3',
         theme_color: '#225ca3',
         ios: true,
+        related_applications: [{
+          platform: "webapp",
+          url: "https://stark-caverns-60972.herokuapp.com/manifest.json"
+        }],
         icons: [
           {
             src: path.resolve('src/images/logo.png'),
