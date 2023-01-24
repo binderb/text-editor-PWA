@@ -23,6 +23,10 @@ if (typeof editor === 'undefined') {
   loadSpinner();
 }
 
+const installButton = document.querySelector('#buttonInstall');
+console.log("hello?");
+console.log("InstalledRelated: ", navigator.getInstalledRelatedApps());
+
 // Check if service workers are supported
 if ('serviceWorker' in navigator) {
   // register workbox service worker
