@@ -23,9 +23,17 @@ if (typeof editor === 'undefined') {
   loadSpinner();
 }
 
-const installButton = document.querySelector('#buttonInstall');
-console.log("hello?");
-console.log("InstalledRelated: ", navigator.getInstalledRelatedApps());
+const hideButtonIfInstalled = async () => {
+  const relatedApps = await navigator.getInstalledRelatedApps();
+  console.log("related apps: ",relatedApps);
+  if (relatedApps && relatedApps.length > 0) {
+    const installButton = document.querySelector('#buttonInstall');
+    installButton.setAttribute('style','display:none;');
+  }
+}
+
+hideButtonIfInstalled();
+
 
 // Check if service workers are supported
 if ('serviceWorker' in navigator) {
